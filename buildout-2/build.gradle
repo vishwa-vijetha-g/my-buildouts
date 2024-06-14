@@ -18,9 +18,6 @@ repositories {
 }
 
 dependencies {
-
-    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
    
     // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
     implementation 'io.github.bonigarcia:webdrivermanager:5.5.3'
@@ -28,6 +25,21 @@ dependencies {
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     implementation 'org.seleniumhq.selenium:selenium-java:4.14.0'
 
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation group: 'org.testng', name: 'testng', version: '7.7.1'
+
+}
+
+test {
+    useTestNG() {
+        suites 'src/test/resources/testng.xml'
+    }
+
+    //Configure test logging
+    testLogging {
+        showStandardStreams = true
+        events "passed", "skipped", "failed"
+    }
 }
 
 //task startScript(type:Exec) {
