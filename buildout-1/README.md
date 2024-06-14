@@ -1,7 +1,6 @@
 # Project Name - _Automate Google Forms_
 
 ## Usage:
-> Example:
 ```
 # to run the project
 ./gradlew run
