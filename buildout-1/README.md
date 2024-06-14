@@ -1,4 +1,4 @@
-# Project Name - _Project Author (Change Me)_
+# Project Name - _Automate Google Forms_
 
 ## Project Name and Description:
 A concise yet descriptive title and an overview of the project’s purpose.
