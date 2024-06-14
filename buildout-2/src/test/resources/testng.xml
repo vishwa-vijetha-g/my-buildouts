@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="SampleSuite">
-    <test name="SampleTest">
+<suite name="My Suite">
+    <test name="My Test">
         <classes>
             <class name="demo.TestCases"/>
         </classes>
