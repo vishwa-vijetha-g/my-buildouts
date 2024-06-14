@@ -82,8 +82,9 @@ public class TestCases {
             wait.until(ExpectedConditions.elementToBeClickable(dateLocator));
             WebElement date = driver.findElement(dateLocator);
             date.click();
-            date.sendKeys(LocalDate.now().minusDays(7).format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-            
+            String dateValue = LocalDate.now().minusDays(7).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            //System.out.println(dateValue);
+            date.sendKeys(dateValue);
 
             By hourLocator = By.xpath("//input[@aria-label='Hour']");
             wait.until(ExpectedConditions.elementToBeClickable(hourLocator));
@@ -126,6 +127,11 @@ public class TestCases {
             wait.until(ExpectedConditions.elementToBeClickable(submitLocator));
             WebElement submit = driver.findElement(submitLocator);
             submit.click();
+
+            By successLocator = By.className("vHW8K");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(successLocator));
+            WebElement success = driver.findElement(successLocator);
+            System.out.println(success.getText());
 
             Thread.sleep(2500); // ADDING THREAD.SLEEP() FOR VISUALIZATION
 
