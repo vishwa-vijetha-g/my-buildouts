@@ -106,7 +106,6 @@ public class TestCases {
         try{
             System.out.println("Test Case 03: START");
             
-
             String searchValue = new String("Coffee Mug");
             search(searchValue);
             
