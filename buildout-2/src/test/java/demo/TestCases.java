@@ -33,8 +33,7 @@ public class TestCases {
 
             driver.get("http://www.flipkart.com");
             
-            String searchValue = new String("Washing Machine");
-            search(searchValue);
+            search("Washing Machine");
 
             By popularityLocator = By.xpath("//div[text()='Popularity']");
             wait.until(ExpectedConditions.elementToBeClickable(popularityLocator));
@@ -72,8 +71,7 @@ public class TestCases {
         try{
             System.out.println("Test Case 02: START");
 
-            String searchValue = new String("iPhone");
-            search(searchValue);
+            search("iPhone");
 
             Thread.sleep(2500);
 
@@ -106,8 +104,7 @@ public class TestCases {
         try{
             System.out.println("Test Case 03: START");
             
-            String searchValue = new String("Coffee Mug");
-            search(searchValue);
+            search("Coffee Mug");
             
             Thread.sleep(2500);
             
