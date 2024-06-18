@@ -28,7 +28,7 @@ public class TestCases {
         WebDriverManager.chromedriver().timeout(30).setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         je = (JavascriptExecutor) driver;
         sa = new SoftAssert();
     }
@@ -147,6 +147,51 @@ public class TestCases {
         }catch(Exception e){
 
             System.out.println("Test Case 03: FAIL");
+            e.printStackTrace();
+
+        }
+    }
+
+    @Test
+    public void testCase04(){
+        try{
+            System.out.println("Test Case 04: START");
+
+            driver.get("https://www.youtube.com/");
+
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@title='News']")));
+            WebElement news = driver.findElement(By.xpath("//a[@title='News']"));
+
+            je.executeScript("arguments[0].scrollIntoView();", news);
+            wait.until(ExpectedConditions.visibilityOf(news));
+            news.click();
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='author']/a/span")));
+            List<WebElement> titles = driver.findElements(By.xpath("//div[@id='author']/a/span"));
+            
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='post-text']/yt-formatted-string/span[1]")));
+            List<WebElement> bodies = driver.findElements(By.xpath("//div[@id='post-text']/yt-formatted-string/span[1]"));
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='vote-count-middle']")));
+            List<WebElement> likes = driver.findElements(By.xpath("//span[@id='vote-count-middle']"));
+
+            System.out.println("The Title,Body and Likes of Top 3 Latest News Posts : ");
+            int sum = 0;
+
+            for(int i=0;i<3;i++){
+                System.out.println("Post " + (i+1));
+                System.out.println(titles.get(i).getText());
+                System.out.println(bodies.get(i).getText());
+                System.out.println(likes.get(i).getText() + " Likes");
+                sum += Integer.valueOf(likes.get(i).getText().trim());
+            }
+            System.out.println("Sum of Likes of 3 posts : " + sum);
+
+            System.out.println("Test Case 04: PASS");
+
+        }catch(Exception e){
+
+            System.out.println("Test Case 04: FAIL");
             e.printStackTrace();
 
         }
