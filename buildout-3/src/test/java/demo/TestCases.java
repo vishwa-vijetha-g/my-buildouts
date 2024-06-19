@@ -1,5 +1,7 @@
 package demo;
 
+import demo.DataProviderClass;
+
 import java.time.Duration;
 import java.util.*;
 
@@ -197,9 +199,39 @@ public class TestCases {
         }
     }
 
+    @Test(dataProviderClass = DataProviderClass.class, dataProvider = "Data Provider Method")
+    public void testCase05(String searchValues){
+        try{
+            System.out.println("Test Case 05: START");
+
+            driver.get("https://www.youtube.com/");
+
+            WebElement search = driver.findElement(By.xpath("//input[@id='search']"));
+            search.sendKeys(searchValues);
+            search.sendKeys(Keys.ENTER);
+            
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@id='dismissible' and @class='style-scope ytd-video-renderer']/div/div/ytd-video-meta-block/div/div[2]/span[1]")));
+            List<WebElement> views = driver.findElements(By.xpath("//div[@id='dismissible' and @class='style-scope ytd-video-renderer']/div/div/ytd-video-meta-block/div/div[2]/span[1]"));
+
+            System.out.println("Views of first 5 search results of - " + searchValues + ":");
+
+            for(int i=0;i<5;i++){
+                System.out.println(views.get(i).getText());
+            }
+
+            System.out.println("Test Case 05: PASS");
+
+        }catch(Exception e){
+
+            System.out.println("Test Case 05: FAIL");
+            e.printStackTrace();
+
+        }
+    }
+
     @AfterSuite
     public void afterSuiteMethod(){
-        // driver.close();
-        // driver.quit();
+        driver.close();
+        driver.quit();
     }
 }
